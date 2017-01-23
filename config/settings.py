@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'test_without_migrations',
     'django_extensions',
     'bootstrap3',
+    'rest_framework',
+    'rest_framework.authtoken',
     # Project apps
     'apps.board',
 ]
