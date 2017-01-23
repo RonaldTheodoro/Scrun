@@ -1,6 +1,11 @@
-from django.conf.urls import url
-from .views import index
+from rest_framework.routers import DefaultRouter
+from .views import SprintViewSet
+from .views import TaskViewSet
+from .views import UserViewSet
 
-urlpatterns = [
-    url(r'^$', index, name='index'),
-]
+
+router = DefaultRouter()
+
+router.register(r'sprint', SprintViewSet)
+router.register(r'task', TaskViewSet)
+router.register(r'user', UserViewSet)
