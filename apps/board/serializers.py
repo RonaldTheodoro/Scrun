@@ -128,21 +128,21 @@ class TaskSerializer(serializers.ModelSerializer):
         completed = attrs.get('completed')
 
         if not sprint and status != Task.STATUS_TODO:
-            message = ugettext_lazy(
-                'Backlog tasks must have "Not Started" status')
-            raise serializers.ValidationError(message)
+            self.show_error('Backlog tasks must have "Not Started" status')
 
         if started and status == Task.STATUS_TODO:
-            message = ugettext_lazy(
-                'Started date cannot be set for not started tasks')
-            raise serializers.ValidationError(message)
+            self.show_error('Started date cannot be set for not started tasks')
 
         if completed and status != Task.STATUS_DONE:
-            message = ugettext_lazy(
+            self.show_error(
                 'Completed date cannot be set for uncompleted tasks')
-            raise serializers.ValidationError(message)
 
         return attrs
+        
+    def show_error(self, message):
+        message_error = ugettext_lazy(message)
+        raise serializers.ValidationError(message_error)
+
 
 
 class UserSerializer(serializers.ModelSerializer):
