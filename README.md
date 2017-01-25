@@ -1,6 +1,6 @@
-# Basic Project
+# Scrum Table
 
-This is just a basic sample for django projects
+A simple project from the book lightweight django
 
 ## How to develop?
 
@@ -15,13 +15,10 @@ This is just a basic sample for django projects
 5) Configure the instance with .env
 
 ```console
-mkdir ProjectName
-cd ProjectName
+mkdir Scrun
+cd Scrun
 python3 -m venv .venv
 source .venv/bin/activate
-pip install --upgrade pip
-pip install django
-django-admin.py startproject ProjectName . --template=https://github.com/RonaldTheodoro/Basic-Django-Project/archive/master.zip --name=ProjectName
 pip install -r requirements-dev.txt
 cp contrib/env-sample .env
 ```
@@ -39,7 +36,7 @@ cp contrib/env-sample .env
 6) Send the source code to heroku
 
 ```console
-heroku create MyApp
+heroku create ScrunApp
 heroku config:push
 heroku config:set SECRET_KEY=`python contrib/secret_gen.py`
 heroku config:set DEBUG=False
