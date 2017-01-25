@@ -104,8 +104,7 @@ class TaskSerializer(ValidatorMixin, serializers.ModelSerializer):
     def validate_sprint(self, value):
         if self.instance and self.instance.pk:
             if value != self.instance.sprint:
-                if self.instance.status == Task.STATUS_DONE:
-                    show_error('Cannot change the sprint of a completed task')
+                self.check_if_is_not_finished()
                 
                 self.check_if_is_not_a_old_sprint(
                     value, 'Cannot assign tasks to past sprints')

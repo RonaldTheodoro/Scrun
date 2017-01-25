@@ -1,3 +1,4 @@
+from datetime import date
 from django.utils.translation import ugettext_lazy
 from rest_framework import serializers
 from rest_framework.authentication import BaseAuthentication
@@ -24,6 +25,10 @@ class DefaultsMixin:
 
 
 class ValidatorMixin:
+
+    def check_if_is_not_finished(self):
+        if self.instance.status == Task.STATUS_DONE:
+            show_error('Cannot change the sprint of a completed task')
 
     def check_if_is_not_a_old_sprint(self, value, message):
         if value and value.end < date.today():
