@@ -26,7 +26,7 @@ class DefaultsMixin:
 
 class ValidatorMixin:
 
-    def check_value_sprint(self, value):
+    def check_value_sprint(self, value, Task):
         if value != self.instance.sprint:
             self.check_if_is_not_finished(Task)
 

@@ -103,7 +103,7 @@ class TaskSerializer(ValidatorMixin, serializers.ModelSerializer):
 
     def validate_sprint(self, value):
         if self.instance and self.instance.pk:
-            self.check_value_sprint(value)
+            self.check_value_sprint(value, Task)
         else:
             self.check_if_is_not_a_old_sprint(
                 value, 'Cannot add tasks to past sprints')
