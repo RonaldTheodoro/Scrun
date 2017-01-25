@@ -26,6 +26,13 @@ class DefaultsMixin:
 
 class ValidatorMixin:
 
+    def check_value_sprint(self, value):
+        if value != self.instance.sprint:
+            self.check_if_is_not_finished(Task)
+
+            self.check_if_is_not_a_old_sprint(
+                value, 'Cannot assign tasks to past sprints')
+
     def check_if_is_not_finished(self, Task):
         if self.instance.status == Task.STATUS_DONE:
             show_error('Cannot change the sprint of a completed task')
