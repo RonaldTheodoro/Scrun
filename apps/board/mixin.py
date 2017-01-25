@@ -26,7 +26,7 @@ class DefaultsMixin:
 
 class ValidatorMixin:
 
-    def check_if_is_not_finished(self):
+    def check_if_is_not_finished(self, Task):
         if self.instance.status == Task.STATUS_DONE:
             show_error('Cannot change the sprint of a completed task')
 
@@ -34,15 +34,15 @@ class ValidatorMixin:
         if value and value.end < date.today():
             show_error(message)
 
-    def check_task_status(self, sprint, status):
+    def check_task_status(self, sprint, status, Task):
         if not sprint and status != Task.STATUS_TODO:
             self.show_error('Backlog tasks must have "Not Started" status')
 
-    def check_started_date(self, started, status):
+    def check_started_date(self, started, status, Task):
         if started and status == Task.STATUS_TODO:
             self.show_error('Started date cannot be set for not started tasks')
 
-    def check_completed_date(self, completed, status):
+    def check_completed_date(self, completed, status, Task):
         if completed and status != Task.STATUS_DONE:
             self.show_error(
                 'Completed date cannot be set for uncompleted tasks')
