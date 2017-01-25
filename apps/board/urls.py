@@ -6,6 +6,6 @@ from .views import UserViewSet
 
 router = DefaultRouter()
 
-router.register(r'sprint', SprintViewSet)
-router.register(r'task', TaskViewSet)
-router.register(r'user', UserViewSet)
+router.register(r'sprints', SprintViewSet)
+router.register(r'tasks', TaskViewSet)
+router.register(r'users', UserViewSet)
