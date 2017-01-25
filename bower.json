@@ -1,0 +1,22 @@
+{
+  "name": "Scrum",
+  "homepage": "https://github.com/RonaldTheodoro/Scrun",
+  "authors": [
+    "Ronald Theodoro <ronald.silva4@fatec.sp.gov.br>"
+  ],
+  "description": "Scrum Board",
+  "main": "manager.py",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "jquery": "^3.1.1",
+    "underscore": "^1.8.3"
+  }
+}
