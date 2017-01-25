@@ -8,9 +8,7 @@ from apps.board.urls import router
 urlpatterns = [
     # Admin
     url(r'^admin/', admin.site.urls),
-    # Board app
-    url(r'^', include('apps.board.urls', namespace='board')),
     # API
     url(r'^api/token/', obtain_auth_token, name='api-token'),
-    url(r'^api/', include(router.urls, namespace='endpoints')),
+    url(r'^api/', include(router.urls)),
 ]
