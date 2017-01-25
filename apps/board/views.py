@@ -6,8 +6,8 @@ from .serializers import SprintSerializer
 from .serializers import TaskSerializer
 from .serializers import UserSerializer
 from .mixin import DefaultsMixin
-from .forms import SprintFilter
-from .forms import TaskFilter
+from .filters import SprintFilter
+from .filters import TaskFilter
 
 
 User = get_user_model()
