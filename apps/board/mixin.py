@@ -24,6 +24,11 @@ class DefaultsMixin:
 
 
 class ValidatorMixin:
+
+    def check_if_is_not_a_old_sprint(self, value, message):
+        if value and value.end < date.today():
+            show_error(message)
+
     def check_task_status(self, sprint, status):
         if not sprint and status != Task.STATUS_TODO:
             self.show_error('Backlog tasks must have "Not Started" status')

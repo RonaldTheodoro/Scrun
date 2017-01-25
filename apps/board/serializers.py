@@ -28,7 +28,7 @@ class SprintSerializer(ValidatorMixin, serializers.ModelSerializer):
                 request=request
             ),
             'tasks': reverse(
-                'task-list', 
+                'task-list',
                 request=request
             ) + f'?sprint={obj.pk}',
         }
@@ -107,11 +107,11 @@ class TaskSerializer(ValidatorMixin, serializers.ModelSerializer):
                 if self.instance.status == Task.STATUS_DONE:
                     show_error('Cannot change the sprint of a completed task')
                 
-                if value and value.end < date.today():
-                    show_error('Cannot assign tasks to past sprints')
+                self.check_if_is_not_a_old_sprint(
+                    value, 'Cannot assign tasks to past sprints')
         else:
-            if value and value.end < date.today():
-                show_error('Cannot add tasks to past sprints')
+            self.check_if_is_not_a_old_sprint(
+                value, 'Cannot add tasks to past sprints')
         
         return value
 
