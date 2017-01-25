@@ -7,7 +7,13 @@ from rest_framework.filters import OrderingFilter
 
 
 class DefaultsMixin:
-    authentication_classes = (BaseAuthentication, TokenAuthentication, )
+    """
+    Whem authentication_classes is uncommented this bug appears
+
+    NotImplementedError at /api/task/
+    .authenticate() must be overridden.
+    """
+    # authentication_classes = (BaseAuthentication, TokenAuthentication, )
     permission_classes = (IsAuthenticated, )
     paginate_by = 25
     paginate_by_param = 'page_size'
