@@ -127,20 +127,24 @@ class TaskSerializer(serializers.ModelSerializer):
         started = attrs.get('started')
         completed = attrs.get('completed')
 
-        if not sprint and status != Task.STATUS_TODO:
-            self.show_error('Backlog tasks must have "Not Started" status')
-
+        self.check_task_status(sprint, status)
         self.check_started_date(started, status)
-
-        if completed and status != Task.STATUS_DONE:
-            self.show_error(
-                'Completed date cannot be set for uncompleted tasks')
+        self.check_completed_date(completed, status)
 
         return attrs
+    
+    def check_task_status(self, sprint, status):
+        if not sprint and status != Task.STATUS_TODO:
+            self.show_error('Backlog tasks must have "Not Started" status')
 
     def check_started_date(self, started, status):
         if started and status == Task.STATUS_TODO:
             self.show_error('Started date cannot be set for not started tasks')
+
+    def check_completed_date(self, completed, status):
+        if completed and status != Task.STATUS_DONE:
+            self.show_error(
+                'Completed date cannot be set for uncompleted tasks')
         
     def show_error(self, message):
         message_error = ugettext_lazy(message)
