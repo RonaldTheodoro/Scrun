@@ -52,9 +52,9 @@
             this.showErrors(errors);
         },
         done: function (event) {
-            if (event)
+            if (event) {
                 event.preventDefault();
-
+            }
             this.trigger('done');
             this.remove();
         }
