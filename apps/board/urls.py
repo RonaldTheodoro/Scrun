@@ -4,7 +4,7 @@ from .views import TaskViewSet
 from .views import UserViewSet
 
 
-router = DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 
 router.register(r'sprints', SprintViewSet)
 router.register(r'tasks', TaskViewSet)
